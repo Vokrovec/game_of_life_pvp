@@ -8,13 +8,29 @@
   <body>
     <div id="game">
       {% for i in range(size*size) %}
-        <div class="box" id="{{i}}">
-          <button class="unpressed"></button>
+        <div class="box unpressed" id="{{i}}">
+        <button onclick="butt_click(this, {{i}})"></button>
         </div>
       {% endfor %}
     </div>
+
+    <script>
+      function butt_click(element, i) {
+        console.log(i)
+        var box = document.getElementById(i);
+        
+        if (box.classList.contains("unpressed") ) {
+          box.classList.remove("unpressed");
+          box.classList.add("pressed");
+        } else {
+          box.classList.remove("pressed");
+          box.classList.add("unpressed");
+        }
+      }
+    </script>
   </body>
 </html>
+
 
 <style>
 #game {
@@ -36,11 +52,12 @@
 }
 
 .unpressed {
-  background-color: transparent;
+  background-color: grey;
 }
 
 button {
   width: 100%;
   height: 100%;
+  background-color:transparent;
 }
 </style>

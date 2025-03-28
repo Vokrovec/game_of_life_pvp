@@ -7,4 +7,4 @@ def index():
 
 @app.route("/game")
 def game():
-    return render_template("game.html")
+    return render_template("game.html", size=10) #size is number of lines (not number of boxes)

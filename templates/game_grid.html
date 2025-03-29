@@ -1,0 +1,14 @@
+<div id="game">
+  {% for i in grid %}
+    {% if i == 0%}
+    <div class="box unpressed" id="{{i}}">
+      <button onclick="butt_click(this, {{i}})"></button>
+    </div>
+    {% else %}
+
+    <div class="box pressed" id="{{i}}">
+      <button onclick="butt_click(this, {{i}})"></button>
+    </div>
+    {% endif %}
+  {% endfor %}
+</div>

@@ -3,9 +3,11 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
     <title>Pvp Game of life</title>
   </head>
   <body>
+    <h1>The game</h1>
     <div id="game">
       {% for i in range(size*size) %}
         <div class="box unpressed" id="{{i}}">
@@ -13,13 +15,13 @@
         </div>
       {% endfor %}
     </div>
-
+    <button hx-post="/eval-game" hx-target="#game" hx-swap="outerHTML">Submit</button>
     <script>
       function butt_click(element, i) {
         console.log(i)
         var box = document.getElementById(i);
         
-        if (box.classList.contains("unpressed") ) {
+        if (box.classList.contains("unpressed")) {
           box.classList.remove("unpressed");
           box.classList.add("pressed");
         } else {
@@ -37,6 +39,7 @@
   display: grid;
   grid-template-columns: repeat({{size}}, auto);
   grid-template-rows: repeat({{size}}, auto);
+  width: 80%;
 }
 
 .box {
@@ -52,7 +55,7 @@
   background-color: black;
 }
 
-button {
+.box > button {
   width: 100%;
   height: 100%;
   background-color:transparent;
